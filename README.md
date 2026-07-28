@@ -33,17 +33,16 @@ A Django-based application that recommends the most suitable shipping box for an
 ## Screenshots
 
 ### Create Order
-
-![Create Order](screenshots/create-order.png)
+![Create Order](screenshots/createorder.png)
 
 ### Box Recommendation
+![Box Recommendation](screenshots/recommendation1.png)
 
-![Box Recommendation](screenshots/recommendation.png)
+### Additional Recommendation View
+![Recommendation](screenshots/recommendation2.png)
 
 ### Django Admin
-
 ![Django Admin](screenshots/admin.png)
-
 ## Project Structure
 
 ```text
