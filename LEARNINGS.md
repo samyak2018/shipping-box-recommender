@@ -1,0 +1,5 @@
+# What I Learned
+Currently, I mostly work on adding backend functionality, but this assignment helped me understand the complete process of building a solution from a given requirement.
+I learned how to analyse requirements properly, think about different possible cases, and decide the overall approach and design before starting the implementation. I also learned how to break a problem into smaller parts and build the solution step by step.
+One of the most important things I learned was testing. I understood how to test different inputs and edge cases, debug failed tests, and make the system more reliable for different user scenarios.
+Overall, this assignment improved the way I approach a problem. Instead of directly starting with code, I now understand how important it is to analyse the requirement, design the solution, implement it properly, test it, and think about the system from the user's point of view.
