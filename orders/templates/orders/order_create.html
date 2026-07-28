@@ -1,0 +1,118 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Create Order | Box Recommender
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+
+    <span class="eyebrow">
+        NEW ORDER
+    </span>
+
+    <h1>Create Shipping Order</h1>
+
+    <p>
+        Select the required quantity for each product.
+        We'll automatically recommend the most suitable
+        shipping box based on dimensions, weight and cost.
+    </p>
+
+</section>
+
+
+<div class="content-card">
+
+    <div class="card-header">
+        <div>
+            <h2>Order Products</h2>
+            <p>
+                Enter a quantity greater than zero
+                for products you want to include.
+            </p>
+        </div>
+    </div>
+
+
+    <form method="post">
+
+        {% csrf_token %}
+
+
+        {% if form.non_field_errors %}
+
+            <div class="alert alert-error">
+
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+
+        <div class="product-list">
+
+            <div class="product-list-header">
+                <span>Product</span>
+                <span>Quantity</span>
+            </div>
+
+
+            {% for field in form %}
+
+                <div class="product-row">
+
+                    <div class="product-info">
+
+                        <span class="product-name">
+                            {{ field.label }}
+                        </span>
+
+                        {% if field.errors %}
+
+                            <span class="field-error">
+                                {{ field.errors|striptags }}
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="quantity-field">
+                        {{ field }}
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="form-footer">
+
+            <p class="form-hint">
+                Products with quantity 0 will not be
+                included in the order.
+            </p>
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Find Best Shipping Box
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,242 @@
+{% extends "orders/base.html" %}
+
+
+{% block title %}
+    Order #{{ order.id }} | Box Recommender
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="page-header">
+
+    <span class="eyebrow">
+        ORDER #{{ order.id }}
+    </span>
+
+    <h1>Shipping Recommendation</h1>
+
+    <p>
+        Your order has been analysed against the
+        available shipping boxes.
+    </p>
+
+</section>
+
+
+<div class="summary-grid">
+
+
+    <div class="summary-card">
+
+        <span class="summary-label">
+            Total Weight
+        </span>
+
+        <strong>
+            {{ total_weight }}
+            <small>kg</small>
+        </strong>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <span class="summary-label">
+            Total Volume
+        </span>
+
+        <strong>
+            {{ total_volume }}
+            <small>cm³</small>
+        </strong>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <span class="summary-label">
+            Products
+        </span>
+
+        <strong>
+            {{ order.items.count }}
+        </strong>
+
+    </div>
+
+</div>
+
+
+
+<div class="content-card">
+
+    <div class="card-header">
+
+        <div>
+            <h2>Order Items</h2>
+            <p>
+                Products included in this shipment.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="order-items">
+
+        <div class="order-item-header">
+            <span>Product</span>
+            <span>Quantity</span>
+        </div>
+
+
+        {% for item in order.items.all %}
+
+            <div class="order-item-row">
+
+                <span class="product-name">
+                    {{ item.product.name }}
+                </span>
+
+                <span class="quantity-badge">
+                    × {{ item.quantity }}
+                </span>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+
+{% if recommended_box %}
+
+
+<div class="recommendation-card">
+
+    <div class="recommendation-top">
+
+        <div>
+
+            <span class="recommendation-label">
+                RECOMMENDED BOX
+            </span>
+
+            <h2>
+                {{ recommended_box.name }}
+            </h2>
+
+            <p>
+                Best available option based on the
+                order requirements and box cost.
+            </p>
+
+        </div>
+
+
+        <div class="recommendation-cost">
+
+            <span>Box Cost</span>
+
+            <strong>
+                £{{ recommended_box.cost }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="box-details">
+
+
+        <div class="box-detail">
+
+            <span>
+                Internal Dimensions
+            </span>
+
+            <strong>
+                {{ recommended_box.internal_length }}
+                ×
+                {{ recommended_box.internal_width }}
+                ×
+                {{ recommended_box.internal_height }}
+                cm
+            </strong>
+
+        </div>
+
+
+        <div class="box-detail">
+
+            <span>
+                Maximum Weight
+            </span>
+
+            <strong>
+                {{ recommended_box.max_weight }}
+                kg
+            </strong>
+
+        </div>
+
+
+        <div class="box-detail">
+
+            <span>
+                Status
+            </span>
+
+            <strong class="status-available">
+                Suitable
+            </strong>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+{% else %}
+
+
+<div class="no-box-card">
+
+    <h2>
+        No Suitable Box Found
+    </h2>
+
+    <p>
+        No suitable shipping box is available for this order.
+    </p>
+
+</div>
+
+
+{% endif %}
+
+
+
+<div class="page-actions">
+
+    <a
+        href="{% url 'orders:create_order' %}"
+        class="btn btn-primary"
+    >
+        Create Another Order
+    </a>
+
+</div>
+
+
+{% endblock %}

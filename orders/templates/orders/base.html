@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+            Box Recommender
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'orders/css/style.css' %}"
+    >
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="navbar-container">
+
+            <a
+                href="{% url 'orders:create_order' %}"
+                class="brand"
+            >
+                Box Recommender
+            </a>
+
+            <nav>
+                <a href="{% url 'orders:create_order' %}">
+                    Create Order
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="page-container">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <footer class="footer">
+        <p>
+            Shipping Box Recommendation System
+        </p>
+    </footer>
+
+</body>
+
+</html>
